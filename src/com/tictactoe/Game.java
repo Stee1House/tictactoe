@@ -10,7 +10,7 @@ public class Game {
     private final char O = 'O';
     private final int GAMEMOVES = WIDTH * HEIGHT;
     private char[][] field;
-    private char symbol = 'X';
+    private char symbol = 'O';
     private int counter = 0;
 
 
@@ -29,9 +29,9 @@ public class Game {
 
         do {
 
+            switchSymbol();
             setField();
             getField();
-            switchSymbol();
 
             if (this.counter > 3) {
                 char someSymbol = checkVictory(this.symbol);
@@ -61,11 +61,33 @@ public class Game {
     private void setField() {
         System.out.println("Введите координаты.");
         Scanner sc = new Scanner(System.in);
-        System.out.println("Введите по оси X");
-        int x = sc.nextInt();
-        System.out.println("Введите по оси Y");
-        int y = sc.nextInt();
-        setFieldInner(x, y);
+
+        boolean inputNow = true;
+
+        do {
+
+            System.out.println("Введите по оси X");
+            int x = sc.nextInt();
+            System.out.println("Введите по оси Y");
+            int y = sc.nextInt();
+
+
+            if (checkInputValue(x) && checkInputValue(y)) {
+                setFieldInner(x, y);
+                inputNow = false;
+            } else {
+                System.out.println("Неправильный ввод чисел, повторите");
+            }
+        }
+        while(inputNow);
+    }
+
+    private boolean checkInputValue(int value) {
+        if (value >= 1 && value <= 3) {
+          return true;
+        }
+
+        return false;
     }
 
     private void getField() {
