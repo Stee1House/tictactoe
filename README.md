@@ -2,4 +2,4 @@ tictactoe
 =========
 
 TicTacToe
-My first exp in Java, very old PROJECT.
+My first exp in Java, terminal game TicTacToe, very old PROJECT.
